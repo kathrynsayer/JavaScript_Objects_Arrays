@@ -75,9 +75,24 @@ console.log(csvData);
 
 function toJSON() {
 
-    let dataArr = csvData.split("\n");
-    let headers = dataArr[0];
+    let dataArr = input.split("\n");
+    let headers = dataArr[0].split(",");
     let records = dataArr.slice(1); 
+
+console.log(headers, records);
+    let json = records.map(function (record) {
+        let values = record.split(",");
+        let obj = {};
+
+        headers.forEach(function (header, index) {
+            obj[header] = values[index];
+        })
+return obj;
+    })
+return json;
 }
 
-toJSON(csvData)
+let result = toJSON(csvData);
+console.log(result);
+
+
